@@ -1,0 +1,20 @@
+en
+config t
+ho dhcp-server
+ip dhcp pool student
+network 172.16.1.0 255.255.0.0
+default-router 172.16.1.1
+dns-server 172.16.1.2
+exit
+ip dhcp excluded-address 172.16.0.1 172.16.1.25
+exit
+copy run start
+
+
+config t
+int fa0/0
+ip address 172.16.1.1 255.255.0.0
+no shut
+
+exit
+exit

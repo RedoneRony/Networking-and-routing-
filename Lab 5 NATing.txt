@@ -1,0 +1,62 @@
+Route Generic
+Switch 2950
+
+en
+config t
+int fa0/0
+ip address 1.1.1.1 255.0.0.0
+no shut
+exit
+int fa0/1
+ip address 192.168.1.1 255.255.255.0
+no shut
+exit
+
+
+int fa0/1
+ip nat inside
+exit
+int fa0/0
+ip nat outside
+exit
+ip nat inside source static 192.168.1.2 1.1.1.1
+ip route 0.0.0.0 0.0.0.0 1.1.1.2
+
+int fa0/1
+ip nat inside
+exit
+int fa0/0
+ip nat outside
+exit
+ip nat inside source static 192.168.1.3 1.1.1.1
+ip route 0.0.0.0 0.0.0.0 1.1.1.2
+
+en
+config t
+int fa0/0
+ip address 1.1.1.2 255.0.0.0
+no shut
+exit
+int fa0/1
+ip address 172.168.1.1 255.255.0.0
+no shut
+exit
+
+int fa0/1
+ip nat inside
+exit
+int fa0/0
+ip nat outside
+exit
+ip nat inside source static 172.168.1.2 1.1.1.2
+ip route 0.0.0.0 0.0.0.0 1.1.1.1
+
+int fa0/1
+ip nat inside
+exit
+int fa0/0
+ip nat outside
+exit
+ip nat inside source static 172.168.1.3 1.1.1.2
+ip route 0.0.0.0 0.0.0.0 1.1.1.1
+

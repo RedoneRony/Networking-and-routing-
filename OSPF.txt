@@ -1,0 +1,81 @@
+Router generic
+
+en
+conf t
+host name R1
+interface f7/0
+ip address 192.168.10.1 255.255.255.0
+no shut
+exit
+interface f8/0
+ip address 192.168.1.1 255.255.255.252
+no shut
+exit
+interface f9/0
+ip address 192.168.3.2 255.255.255.252
+no shut
+exit
+exit
+en
+conf t
+router ospf 1
+network 192.168.10.0 0.0.0.255 area 0
+network 192.168.3.0 0.0.0.3 area 0
+network 192.168.1.0 0.0.0.3 area 0
+exit
+exit
+copy run start
+
+
+en
+conf t
+host name R2
+interface f2/0
+ip address 192.168.20.1 255.255.255.0
+no shut
+exit
+interface f0/0
+ip address 192.168.3.1 255.255.255.252
+no shut
+exit
+interface f1/0
+ip address 192.168.2.2 255.255.255.252
+no shut
+exit
+exit
+en
+conf t
+router ospf 1
+network 192.168.20.0 0.0.0.255 area 0
+network 192.168.2.0 0.0.0.3 area 0
+network 192.168.3.0 0.0.0.3 area 0
+exit
+exit
+copy run start
+
+
+en
+conf t
+host name R3
+interface f2/0
+ip address 192.168.30.1 255.255.255.0
+no shut
+exit
+interface f0/0
+ip address 192.168.2.1 255.255.255.252
+no shut
+exit
+interface f1/0
+ip address 192.168.1.2 255.255.255.252
+no shut
+exit
+exit
+en
+conf t
+router ospf 1
+network 192.168.30.0 0.0.0.255 area 0
+network 192.168.2.0 0.0.0.3 area 0
+network 192.168.1.0 0.0.0.3 area 0
+exit
+exit
+copy run start

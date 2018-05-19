@@ -1,0 +1,40 @@
+en
+config t
+vlan 1
+name CSE
+exit
+vlan 2
+name EEE
+exit
+int fa0/2
+switchport access vlan 1
+exit
+int fa0/3
+switchport access vlan 2
+exit
+int fa0/1
+switchport mode trunk
+exit
+interface range fastEthernet 0/2-3
+switchport mode access
+
+
+en
+config t
+vlan 1
+name CSE
+exit
+vlan 2
+name EEE
+exit
+int fa0/2
+switchport access vlan 1
+exit
+int fa0/3
+switchport access vlan 2
+exit
+int fa0/1
+switchport mode trunk
+exit
+interface range fastEthernet 0/2-3
+switchport mode access
